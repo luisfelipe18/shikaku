@@ -6,70 +6,141 @@
   <meta name="theme-color" content="#0f1320" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="description" content="Shikaku, the rectangle logic puzzle. Play in your browser." />
-  <title>Shikaku</title>
+  <meta name="description" content="Shikaku and Sudoku logic puzzles. Play in your browser." />
+  <title>Puzzles</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <main class="app">
-    <header class="header">
-      <div class="title">
-        <h1>Shikaku</h1>
-        <p>Divide the grid into rectangles. Each rectangle holds one number equal to its area.</p>
-      </div>
-      <div class="stats">
-        <div class="stat">
-          <span class="stat-label">Time</span>
-          <span class="stat-value" id="timer">00:00</span>
-        </div>
-        <div class="stat">
-          <span class="stat-label">Best</span>
-          <span class="stat-value" id="best">--:--</span>
-        </div>
-      </div>
-    </header>
+    <nav class="tabs" role="tablist" aria-label="Puzzle selection">
+      <button class="tab active" type="button" role="tab" aria-selected="true" data-tab="shikaku">Shikaku</button>
+      <button class="tab" type="button" role="tab" aria-selected="false" data-tab="sudoku">Sudoku</button>
+    </nav>
 
-    <section class="controls">
-      <label class="select">
-        <span>Difficulty</span>
-        <select id="difficulty"></select>
-      </label>
-      <div class="buttons">
-        <button id="new-game" class="btn btn-primary" type="button">New Game</button>
-        <button id="undo" class="btn" type="button">Undo</button>
-        <button id="clear" class="btn" type="button">Clear</button>
-        <button id="solve" class="btn btn-ghost" type="button">Solve</button>
-      </div>
+    <!-- Shikaku -->
+    <section class="view active" id="view-shikaku" role="tabpanel">
+      <header class="header">
+        <div class="title">
+          <h1>Shikaku</h1>
+          <p>Divide the grid into rectangles. Each rectangle holds one number equal to its area.</p>
+        </div>
+        <div class="stats">
+          <div class="stat">
+            <span class="stat-label">Time</span>
+            <span class="stat-value" data-el="timer">00:00</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Best</span>
+            <span class="stat-value" data-el="best">--:--</span>
+          </div>
+        </div>
+      </header>
+
+      <section class="controls">
+        <label class="select">
+          <span>Difficulty</span>
+          <select data-el="difficulty"></select>
+        </label>
+        <div class="buttons">
+          <button data-el="new-game" class="btn btn-primary" type="button">New Game</button>
+          <button data-el="undo" class="btn" type="button">Undo</button>
+          <button data-el="clear" class="btn" type="button">Clear</button>
+          <button data-el="solve" class="btn btn-ghost" type="button">Solve</button>
+        </div>
+      </section>
+
+      <section class="board-wrap">
+        <canvas data-el="board"></canvas>
+        <div class="win" data-el="win">
+          <div class="win-card">
+            <h2>Puzzle solved</h2>
+            <p>Finished in <span data-el="win-time">00:00</span></p>
+            <button data-el="win-next" class="btn btn-primary" type="button">Play Again</button>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="meta">
+          <span class="badge" data-el="status" data-state="playing">In progress</span>
+          <span class="progress" data-el="progress"></span>
+        </div>
+        <details class="how">
+          <summary>How to play</summary>
+          <ul>
+            <li>Drag across cells to draw a rectangle.</li>
+            <li>Every rectangle must contain exactly one number.</li>
+            <li>The number equals the rectangle's area (width times height).</li>
+            <li>Rectangles cannot overlap and must cover the whole grid.</li>
+            <li>Tap a rectangle to remove it. Drawing over one replaces it.</li>
+          </ul>
+        </details>
+      </footer>
     </section>
 
-    <section class="board-wrap">
-      <canvas id="board"></canvas>
-      <div class="win" id="win">
-        <div class="win-card">
-          <h2>Puzzle solved</h2>
-          <p>Finished in <span id="win-time">00:00</span></p>
-          <button id="win-next" class="btn btn-primary" type="button">Play Again</button>
+    <!-- Sudoku -->
+    <section class="view" id="view-sudoku" role="tabpanel">
+      <header class="header">
+        <div class="title">
+          <h1>Sudoku</h1>
+          <p>Fill every row, column, and 3x3 box with the digits 1 to 9.</p>
         </div>
-      </div>
-    </section>
+        <div class="stats">
+          <div class="stat">
+            <span class="stat-label">Time</span>
+            <span class="stat-value" data-el="timer">00:00</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Best</span>
+            <span class="stat-value" data-el="best">--:--</span>
+          </div>
+        </div>
+      </header>
 
-    <footer class="footer">
-      <div class="meta">
-        <span class="badge" id="status" data-state="playing">In progress</span>
-        <span class="progress" id="progress"></span>
-      </div>
-      <details class="how">
-        <summary>How to play</summary>
-        <ul>
-          <li>Drag across cells to draw a rectangle.</li>
-          <li>Every rectangle must contain exactly one number.</li>
-          <li>The number equals the rectangle's area (width times height).</li>
-          <li>Rectangles cannot overlap and must cover the whole grid.</li>
-          <li>Tap a rectangle to remove it. Drawing over one replaces it.</li>
-        </ul>
-      </details>
-    </footer>
+      <section class="controls">
+        <label class="select">
+          <span>Difficulty</span>
+          <select data-el="difficulty"></select>
+        </label>
+        <div class="buttons">
+          <button data-el="new-game" class="btn btn-primary" type="button">New Game</button>
+          <button data-el="undo" class="btn" type="button">Undo</button>
+          <button data-el="notes" class="btn" type="button" aria-pressed="false">Notes</button>
+          <button data-el="hint" class="btn" type="button">Hint</button>
+          <button data-el="solve" class="btn btn-ghost" type="button">Solve</button>
+        </div>
+      </section>
+
+      <section class="board-wrap">
+        <div class="sk-board" data-el="board"></div>
+        <div class="win" data-el="win">
+          <div class="win-card">
+            <h2>Puzzle solved</h2>
+            <p>Finished in <span data-el="win-time">00:00</span></p>
+            <button data-el="win-next" class="btn btn-primary" type="button">Play Again</button>
+          </div>
+        </div>
+      </section>
+
+      <div class="sk-pad" data-el="pad"></div>
+
+      <footer class="footer">
+        <div class="meta">
+          <span class="badge" data-el="status" data-state="playing">In progress</span>
+          <span class="progress" data-el="progress"></span>
+        </div>
+        <details class="how">
+          <summary>How to play</summary>
+          <ul>
+            <li>Tap a cell, then tap a number to place it.</li>
+            <li>Each row, column, and 3x3 box must contain 1 to 9 with no repeats.</li>
+            <li>Use Notes to pencil in candidates. Conflicts are highlighted in red.</li>
+            <li>Hint fills the selected cell. Keyboard and arrow keys are supported.</li>
+          </ul>
+        </details>
+      </footer>
+    </section>
   </main>
-  <script type="module" src="js/app.js"></script>
+  <script type="module" src="js/main.js"></script>
 </body>
 </html>

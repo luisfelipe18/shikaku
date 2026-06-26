@@ -1,13 +1,14 @@
-# Shikaku
+# Puzzles: Shikaku and Sudoku
 
-A web version of the Shikaku logic puzzle, built to run on GitHub Pages and
-optimized for browser play, including mobile Safari.
+Two browser-based logic puzzles in one app, built to run on GitHub Pages and
+optimized for play in modern browsers including mobile Safari. Switch between
+games with the tabs at the top.
 
 ## Play
 
 Open `index.html` in any modern browser, or deploy to GitHub Pages (see below).
 
-## How to play
+## Shikaku
 
 Shikaku ("divide into squares") is a Nikoli logic puzzle.
 
@@ -17,27 +18,38 @@ Shikaku ("divide into squares") is a Nikoli logic puzzle.
 - Rectangles cannot overlap and must cover the entire grid.
 - Tap a rectangle to remove it. Drawing over an existing rectangle replaces it.
 
-Rectangles are colored as you build them: green when a rectangle is valid, red
-when it is wrong, and neutral while it has no number inside yet.
+Rectangles turn green when valid, red when wrong, and stay neutral while they
+have no number inside yet.
+
+## Sudoku
+
+Classic 9x9 Sudoku.
+
+- Tap a cell, then tap a number to place it.
+- Each row, column, and 3x3 box must contain 1 to 9 with no repeats.
+- Use Notes to pencil in candidates. Conflicts are highlighted in red.
+- Hint fills the selected cell. Keyboard input and arrow keys are supported.
 
 ## Features
 
-- Puzzle generator with a uniqueness solver, so every puzzle has a single
-  solution.
-- Four difficulties: Easy (5x5), Medium (7x7), Hard (9x9), Expert (11x11).
+- Generators with uniqueness solvers, so every puzzle has a single solution.
+- Four difficulties for each game.
 - Touch and pointer input tuned for Safari and mobile.
-- Timer with best-time tracking and automatic progress saving (localStorage).
-- Undo, Clear, and Solve controls.
+- Per-game timer with best-time tracking and automatic progress saving.
+- Undo and Solve in both games; Clear for Shikaku; Notes and Hint for Sudoku.
 - Modern, responsive dark interface. No build step and no dependencies.
 
 ## Project structure
 
 ```
-index.html        Markup and layout
+index.html        Markup, tabs, and both game views
 styles.css        Theme and responsive styles
-js/puzzle.js      Puzzle generator and uniqueness solver
-js/game.js        Game state and rule validation
-js/app.js         Canvas rendering, input, and controls
+js/main.js        Tab switching and lazy game initialization
+js/puzzle.js      Shikaku generator and uniqueness solver
+js/game.js        Shikaku game state and rule validation
+js/shikaku.js     Shikaku canvas rendering, input, and controls
+js/sudoku.js      Sudoku generator and uniqueness solver
+js/sudoku-ui.js   Sudoku board rendering, input, and controls
 ```
 
 ## Deploy to GitHub Pages
