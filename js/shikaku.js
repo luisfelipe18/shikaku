@@ -245,8 +245,14 @@ export function initShikaku(root) {
     e.preventDefault();
     const { startR, startC, curR, curC, moved } = drag;
     drag = null;
-    if (!moved) game.removeRectAt(startR, startC);
-    else game.addRect(startR, startC, curR, curC);
+    if (!moved) {
+      // Tap an existing rectangle to remove it; tap an empty cell to place a
+      // single-cell (1x1) rectangle.
+      if (game.rectAtCell(startR, startC) !== -1) game.removeRectAt(startR, startC);
+      else game.addRect(startR, startC, startR, startC);
+    } else {
+      game.addRect(startR, startC, curR, curC);
+    }
     afterMove();
   }
 
