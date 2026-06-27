@@ -52,7 +52,6 @@ body {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 6px;
-  flex-wrap: wrap;
 }
 
 .tab {
@@ -228,7 +227,7 @@ select {
   box-shadow: var(--shadow);
 }
 
-#board {
+canvas[data-el="board"] {
   display: block;
   touch-action: none;
   border-radius: 8px;
@@ -466,7 +465,7 @@ select {
   justify-content: flex-start;
 }
 
-canvas[data-el="board"] {
+#view-nonogram canvas[data-el="board"] {
   cursor: pointer;
 }
 
