@@ -52,6 +52,7 @@ body {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 6px;
+  flex-wrap: wrap;
 }
 
 .tab {
@@ -227,7 +228,7 @@ select {
   box-shadow: var(--shadow);
 }
 
-#board, canvas[data-el="board"] {
+#board {
   display: block;
   touch-action: none;
   border-radius: 8px;
@@ -457,6 +458,64 @@ select {
   background: linear-gradient(180deg, var(--accent), var(--accent-strong));
   border-color: transparent;
   color: #0b0e18;
+}
+
+/* Nonogram */
+.board-wrap-scroll {
+  overflow-x: auto;
+  justify-content: flex-start;
+}
+
+canvas[data-el="board"] {
+  cursor: pointer;
+}
+
+/* Binairo */
+.bn-board {
+  width: 100%;
+  max-width: 460px;
+  aspect-ratio: 1 / 1;
+  display: grid;
+  gap: 4px;
+  background: transparent;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.bn-cell {
+  appearance: none;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #11172a;
+  color: var(--muted);
+  font-size: clamp(1.1rem, 5vw, 1.6rem);
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-variant-numeric: tabular-nums;
+  transition: background 0.1s ease, color 0.1s ease;
+}
+
+.bn-cell.v0 {
+  background: #1d2438;
+  color: #8fb3ff;
+}
+
+.bn-cell.v1 {
+  background: #2a3658;
+  color: #f4f6fb;
+}
+
+.bn-cell.given {
+  box-shadow: inset 0 0 0 2px #46506e;
+}
+
+.bn-cell.conflict {
+  background: rgba(238, 108, 108, 0.22);
+  color: #ff8585;
 }
 
 @media (max-width: 480px) {

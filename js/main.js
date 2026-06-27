@@ -1,5 +1,7 @@
 import { initShikaku } from "./shikaku.js";
 import { initSudoku } from "./sudoku-ui.js";
+import { initNonogram } from "./nonogram-ui.js";
+import { initBinairo } from "./binairo-ui.js";
 
 const TAB_KEY = "puzzles.tab";
 
@@ -7,10 +9,14 @@ const tabs = Array.from(document.querySelectorAll(".tab"));
 const views = {
   shikaku: document.getElementById("view-shikaku"),
   sudoku: document.getElementById("view-sudoku"),
+  nonogram: document.getElementById("view-nonogram"),
+  binairo: document.getElementById("view-binairo"),
 };
 const factories = {
   shikaku: () => initShikaku(views.shikaku),
   sudoku: () => initSudoku(views.sudoku),
+  nonogram: () => initNonogram(views.nonogram),
+  binairo: () => initBinairo(views.binairo),
 };
 const apps = {};
 let current = null;

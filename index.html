@@ -15,6 +15,8 @@
     <nav class="tabs" role="tablist" aria-label="Puzzle selection">
       <button class="tab active" type="button" role="tab" aria-selected="true" data-tab="shikaku">Shikaku</button>
       <button class="tab" type="button" role="tab" aria-selected="false" data-tab="sudoku">Sudoku</button>
+      <button class="tab" type="button" role="tab" aria-selected="false" data-tab="nonogram">Nonogram</button>
+      <button class="tab" type="button" role="tab" aria-selected="false" data-tab="binairo">Binairo</button>
     </nav>
 
     <!-- Shikaku -->
@@ -136,6 +138,126 @@
             <li>Each row, column, and 3x3 box must contain 1 to 9 with no repeats.</li>
             <li>Use Notes to pencil in candidates. Conflicts are highlighted in red.</li>
             <li>Hint fills the selected cell. Keyboard and arrow keys are supported.</li>
+          </ul>
+        </details>
+      </footer>
+    </section>
+
+    <!-- Nonogram -->
+    <section class="view" id="view-nonogram" role="tabpanel">
+      <header class="header">
+        <div class="title">
+          <h1>Nonogram</h1>
+          <p>Use the row and column clues to paint the hidden picture.</p>
+        </div>
+        <div class="stats">
+          <div class="stat">
+            <span class="stat-label">Time</span>
+            <span class="stat-value" data-el="timer">00:00</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Best</span>
+            <span class="stat-value" data-el="best">--:--</span>
+          </div>
+        </div>
+      </header>
+
+      <section class="controls">
+        <label class="select">
+          <span>Difficulty</span>
+          <select data-el="difficulty"></select>
+        </label>
+        <div class="buttons">
+          <button data-el="new-game" class="btn btn-primary" type="button">New Game</button>
+          <button data-el="undo" class="btn" type="button">Undo</button>
+          <button data-el="mode" class="btn" type="button">Mode: Fill</button>
+          <button data-el="solve" class="btn btn-ghost" type="button">Solve</button>
+        </div>
+      </section>
+
+      <section class="board-wrap board-wrap-scroll">
+        <canvas data-el="board"></canvas>
+        <div class="win" data-el="win">
+          <div class="win-card">
+            <h2>Puzzle solved</h2>
+            <p>Finished in <span data-el="win-time">00:00</span></p>
+            <button data-el="win-next" class="btn btn-primary" type="button">Play Again</button>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="meta">
+          <span class="badge" data-el="status" data-state="playing">In progress</span>
+          <span class="progress" data-el="progress"></span>
+        </div>
+        <details class="how">
+          <summary>How to play</summary>
+          <ul>
+            <li>Each number is a run of consecutive filled cells in that row or column.</li>
+            <li>Drag to paint cells. Toggle Mode to fill cells or mark them with an X.</li>
+            <li>Numbers in a clue are separated by at least one empty cell.</li>
+            <li>Solve every line to reveal the picture.</li>
+          </ul>
+        </details>
+      </footer>
+    </section>
+
+    <!-- Binairo -->
+    <section class="view" id="view-binairo" role="tabpanel">
+      <header class="header">
+        <div class="title">
+          <h1>Binairo</h1>
+          <p>Fill the grid with 0s and 1s following three simple rules.</p>
+        </div>
+        <div class="stats">
+          <div class="stat">
+            <span class="stat-label">Time</span>
+            <span class="stat-value" data-el="timer">00:00</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Best</span>
+            <span class="stat-value" data-el="best">--:--</span>
+          </div>
+        </div>
+      </header>
+
+      <section class="controls">
+        <label class="select">
+          <span>Difficulty</span>
+          <select data-el="difficulty"></select>
+        </label>
+        <div class="buttons">
+          <button data-el="new-game" class="btn btn-primary" type="button">New Game</button>
+          <button data-el="undo" class="btn" type="button">Undo</button>
+          <button data-el="hint" class="btn" type="button">Hint</button>
+          <button data-el="solve" class="btn btn-ghost" type="button">Solve</button>
+        </div>
+      </section>
+
+      <section class="board-wrap">
+        <div class="bn-board" data-el="board"></div>
+        <div class="win" data-el="win">
+          <div class="win-card">
+            <h2>Puzzle solved</h2>
+            <p>Finished in <span data-el="win-time">00:00</span></p>
+            <button data-el="win-next" class="btn btn-primary" type="button">Play Again</button>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="meta">
+          <span class="badge" data-el="status" data-state="playing">In progress</span>
+          <span class="progress" data-el="progress"></span>
+        </div>
+        <details class="how">
+          <summary>How to play</summary>
+          <ul>
+            <li>Tap a cell to cycle through empty, 0, and 1.</li>
+            <li>No more than two of the same digit may sit next to each other.</li>
+            <li>Each row and column has an equal number of 0s and 1s.</li>
+            <li>No two rows are identical, and no two columns are identical.</li>
           </ul>
         </details>
       </footer>
